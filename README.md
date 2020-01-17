@@ -5,10 +5,15 @@ All my academic projects that were created in my second year of university.
 All programs in the 'DataStructures' folder were created in C, and makefiles are used for compilation. The programs were created for my 2nd year Data Structures course.
 
 ### Assignments
-Assignment 1 - 
-Assignment 2 - 
-Assignment 3 - 
-Assignment 4 -
+
+#### Assignment 1
+A simple memory system which can track a specified number of blocks of memory and ulilizes a binary file to continuously read/write the information required. This assignment also includes many array commands such as swapping, inserting, removing, adding, etc. at specific indices that will be used in conjuction with the memory system to track the reads/writes used for the commands. There is also the same commands for a linked list that is also used in conjunction with the memory system in the same way. This assignment was used to highlight the pros and cons of arrays and linked lists.
+
+#### Assignment 2
+
+#### Assignment 3
+
+#### Assignment 4 
 
 ## OOP
 All programs in the 'OOP' folder were created in Java and are compiled using the build.xml (ant) file included within that folder. These programs were created for my 2nd year Object-Oriented programming course.  
