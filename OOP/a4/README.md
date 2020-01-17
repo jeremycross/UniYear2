@@ -8,14 +8,15 @@ A pop-up can be shown with information about a specific door in that space.
 
 ### Main GUI
 ![alt text](https://github.com/jeremycross/UniYear2/blob/master/OOP/a4/mainGUI.PNG)
+
 ### Edit Pop-up
-The edit window appears upon clicking the 'Edit selected space' button:
+**The edit window appears upon clicking the 'Edit selected space' button:**
 ![alt text](https://github.com/jeremycross/UniYear2/blob/master/OOP/a4/editMenu1.PNG)
   
-Upon clicking 'Add treasures/Add monsters' a list of all available treasures/monsters appears (under heading of add treasure/add monster). Upon clicking 'Remove treasure/monster a list of all treasure(s)/monster(s) in the space appears (under heading remove treasures/remove monsters):
+**Upon clicking 'Add treasures/Add monsters' a list of all available treasures/monsters appears (under heading of add treasure/add monster). Upon clicking 'Remove treasure/monster a list of all treasure(s)/monster(s) in the space appears (under heading remove treasures/remove monsters):**
 ![alt text](https://github.com/jeremycross/UniYear2/blob/master/OOP/a4/editMenu2.PNG)
   
-To avoid too many edits at once, when a monster/treasure has been selected from the list it will be disabled (grayed out). It will remain in operable until cancelling/exiting the edit or saving the edit to the selected space.
+**To avoid too many edits at once, when a monster/treasure has been selected from the list it will be disabled (grayed out). It will remain in operable until cancelling/exiting the edit or saving the edit to the selected space.**
 ![alt text](https://github.com/jeremycross/UniYear2/blob/master/OOP/a4/editMenu3.PNG)
 
 ### Door info Pop-up
@@ -24,6 +25,6 @@ To avoid too many edits at once, when a monster/treasure has been selected from 
 ## Future improvements
 The Last assingment in this course was quite a large step up in difficulty from the previous assignments, because of this I would like to pursue adding to this project in my sparetime and make the following improvements to the GUI/Back-end:
 
-Integrate the monster/treasure removal and addition using a data base
-CSS formatting to improve the look and feel of the GUI
-Spend more time improving the usuability of the editing pop-up
+ - Integrate the monster/treasure removal and addition using a data base
+ - CSS formatting to improve the look and feel of the GUI
+ - Spend more time improving the usuability of the editing pop-up
