@@ -1,0 +1,2 @@
+# Assignment 2
+Read in a text file of unspecified length and read in every word into memory and add it to dynamically allocated linked list (each word is a node). This list can have multiple functions performed on it such as searching for a specific string, creating a soft copy based on the starting and ending nodes, removing consecutive repeating words and outputting linked list to a file in a formatted fashion.
