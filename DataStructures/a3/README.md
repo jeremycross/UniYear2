@@ -1,0 +1,6 @@
+# Assignment 3
+Reads in information from 3 tsv's (the location of these is passed as an argument on the command to run) from IMDB with information surrounding movies, actors and their roles in movies. Creates three binary trees one corresponding to actor name and actor id# (name tree), actor id# and movie id# and their character(s) in that movie (roles tree), movie id# and movie title (title tree).
+
+The program will continuously run until an improper command is entered (proper commands are "name" and "title"). Given the input "name {actors full name}" it will search the actor name/id# tree and find the actors id by traversing the tree. It will then use this number to find the movie id# and the role of the actor in that movie, using the movie id it will print out the the following output: "{Movie title} : {Role(s) in that movie}". This will continue until every movie that actor has been in is found/printed and no more are left to be found.
+
+In a similar process, given the input "title {full movie title}" it will find title id# from title tree. Use that to find the actor id#s in that movie and their roles and use the actor id#s to print out the following output: "{Actor name} : {Character(s) in movie}." This will continue until every actor in this movie and their role(s) have been printed out.
