@@ -16,7 +16,7 @@ All programs in the 'OOP' folder were created in Java and are compiled using the
 ### Assignments
 
 #### Assignment 1
-Generate a random element from a DnD game (from a treasure to a whole chamber with treasures/monsters/etc. which is to be selected via user input) and prints out a description of the element generated.  
+Generates a random element from a DnD game (from a treasure to a whole chamber with treasures/monsters/etc. which is to be selected via user input) and prints out a description of the element generated.  
 #### Assignment 2
 Generates a level of dungeon for a DnD DM that has 5 Chambers (this will be done ignoring geometries) and prints out a formatted description of the level generated.  
 #### Assignment 3
