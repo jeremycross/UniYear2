@@ -2,7 +2,7 @@
 All my academic projects that were created in my second year of university. 
 
 ## Data Structures
-All programs in the 'DataStructures' folder were created in c, and makefiles are used for compilation. The programs were created for my 2nd year Data Structures course.
+All programs in the 'DataStructures' folder were created in C, and makefiles are used for compilation. The programs were created for my 2nd year Data Structures course.
 
 ### Assignments
 Assignment 1 - 
@@ -11,7 +11,7 @@ Assignment 3 -
 Assignment 4 -
 
 ## OOP
-All programs in the 'OOP' folder were created in java and are compiled using the build.xml (ant) file included within that folder. These programs were created for my 2nd year Object-Oriented programming course.  
+All programs in the 'OOP' folder were created in Java and are compiled using the build.xml (ant) file included within that folder. These programs were created for my 2nd year Object-Oriented programming course.  
 
 ### Assignments
 
