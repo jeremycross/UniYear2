@@ -1,8 +1,3 @@
-Name: Jeremy Cross
-Email: jcross04@uoguelph.ca
-Stu ID: 1048495
+# Assignment 1
 
-	**Statement**
-I, Jeremy Cross, attest that all work for this assignment
-was completed through my own aspirations and was not copied
-from other sources.
+Generates a random element from a DnD game (from a treasure to a whole chamber with treasures/monsters/etc. which is to be selected via user input) and prints out a description of the element generated.
