@@ -6,10 +6,12 @@
 
 struct node_struct *txt2words(FILE* fp){
 
-    struct node_struct *head = malloc(sizeof(struct node_struct));
-    struct node_struct *next = head;
+    struct node_struct *head;
+    struct node_struct *next;
+    struct node_struct *curr;
     char *string = calloc(256, sizeof(char));
     char *freeStr;
+    int firstLoop = 0;
     char *sub;
 
     freeStr = string;
@@ -21,17 +23,27 @@ struct node_struct *txt2words(FILE* fp){
         }
 
         while(string[0] != '\0') { /*Create list entries off of current line*/
+
+
+            if(firstLoop == 0) {
+                next = calloc(1, sizeof(struct node_struct));
+                head = next;
+                firstLoop = 1;
+            }
             sub = get_word(&string);
+            /*set current nodes data*/
             next->data = sub;
-            next->next = calloc(1, sizeof(struct node_struct));
-            next = next->next;
-            next->next = NULL;
+            curr = next;
+
+            next->next = calloc(1, sizeof(struct node_struct)); /*Allocate for next node*/
+            next = next->next; /*Set next to next node*/
         }
+        string = freeStr;
     }
 
-    next->next = NULL;
+    curr->next = NULL; /*Last node's next should be NULL*/
+    free(next); /*Free unneeded malloc*/
 
-    fclose(fp);
     free(freeStr);
 
     return head;
@@ -92,30 +104,69 @@ char *get_word(char ** string) {
 
 struct node_struct *search(struct node_struct *list, char *target, int (*compar)(const void *, const void *)){
 
-    return NULL;
+    struct node_struct *temp;
+    struct node_struct *head;
+    struct node_struct *searchNode;
+    struct node_struct *prev;
+
+    head = calloc(1, sizeof(struct node_struct));
+
+    searchNode = head;
+    temp = list;
+
+    while(temp) {
+
+        /*Found matching node*/
+        if(compar(temp->data, (void *)target) == 0) {
+            searchNode->data = temp;
+            prev = searchNode;
+            searchNode->next = calloc(1, sizeof(struct node_struct));
+            searchNode = searchNode->next;
+        }
+
+        temp = temp->next;
+    }
+
+    prev->next = NULL;
+    free(searchNode);
+
+    return head;
 }
 
+int strcmpVoid(const void *a, const void *b) {
+
+    char *str_a;
+    char *str_b;
+
+    str_a = (char*)a;
+    str_b = (char*)b;
+
+    return strcmp(str_a, str_b);
+}
 
 struct node_struct *copy(struct node_struct *start, struct node_struct *end){
 
     struct node_struct *temp;
     struct node_struct *head;
-    struct node_struct *copy = malloc(sizeof(struct node_struct));
+    struct node_struct *prev;
+    struct node_struct *cop = malloc(sizeof(struct node_struct));
 
     temp = start;
-    head = copy;
+    head = cop;
 
-    while(temp != end && temp->next != NULL) {
+    while(temp != end && temp != NULL) {
 
-        copy->data = temp->data;
-        copy->next = malloc(sizeof(struct node_struct));
-        copy = copy->next;
-        copy->next = NULL;
+        cop->data = temp->data;
+        prev = cop;
+
+        cop->next = malloc(sizeof(struct node_struct));
+        cop = cop->next;
         temp = temp->next;
 
     }
 
-    copy->next = NULL;
+    prev->next = NULL;
+    free(cop);
 
     return head;
 }
@@ -129,41 +180,50 @@ void ftext(FILE* fp, struct node_struct *list){
     int lineLen = 0;
     int futLineLen;
 
-    while(temp->next != NULL) {
+    while(temp != NULL) {
 
         str = ((char*)temp->data);
 
-        if(temp->next->data) {
+        if(temp->next) {
             nextStr = ((char*)temp->next->data);
+        } else {
+            nextStr = NULL;
         }
 
-        printf("%s", str);
+        fprintf(fp, "%s", str);
         lineLen += strlen(str);
 
-        if(checkPunct(str[strlen(str)-1]) && noSpaceCond(nextStr)){
+        if(nextStr == NULL) {
 
-            futLineLen = lineLen + strlen(nextStr);
-            if(futLineLen >= 80) {
-                printf("\n");
-                lineLen = 0;
-            }
-            else {
-                printf(" ");
-                lineLen++;
-            }
         }
+        else {
 
-        if(isalnum(str[strlen(str)-1]) && isalnum(nextStr[0])) {
+            if(checkPunct(str[strlen(str)-1]) && noSpaceCond(nextStr)){
 
-            futLineLen = lineLen + strlen(nextStr);
-            if(futLineLen >= 80) {
-                printf("\n");
-                lineLen = 0;
+                futLineLen = lineLen + strlen(nextStr);
+                if(futLineLen >= 80) {
+                    fprintf(fp, "\n");
+                    lineLen = 0;
+                }
+                else {
+                    fprintf(fp, " ");
+                    lineLen++;
+                }
             }
-            else {
-                printf(" ");
-                lineLen++;
+
+            if(isalnum(str[strlen(str)-1]) && isalnum(nextStr[0])) {
+
+                futLineLen = lineLen + strlen(nextStr);
+                if(futLineLen >= 80) {
+                    fprintf(fp, "\n");
+                    lineLen = 0;
+                }
+                else {
+                    fprintf(fp, " ");
+                    lineLen++;
+                }
             }
+
         }
 
         temp = temp->next;
@@ -198,6 +258,32 @@ struct node_struct *sort(struct node_struct *list, int (*compar)(const void *, c
 
 void remove_repeats(struct node_struct *list, int (*compar)(const void *, const void *)){
 
+    struct node_struct *temp;
+    struct node_struct *prev;
+    void *toRemove;
+
+
+    prev = list;
+    toRemove = prev->data;
+    temp = list->next;
+
+
+    while(temp) {
+
+        /*Found matching node must remove*/
+        if(compar(temp->data, toRemove) == 0) {
+            prev->next = temp->next;
+            free(temp);
+            temp = prev->next;
+        } else {
+            prev = temp;
+            toRemove = prev->data;
+            temp = temp->next;
+        }
+
+    }
+
+
     return;
 }
 
@@ -207,7 +293,7 @@ int length(struct node_struct *list){
 
     temp = list;
 
-    while(temp->next) {
+    while(temp) {
         temp = temp->next;
         len++;
     }
@@ -223,25 +309,21 @@ void free_list(struct node_struct *list, int free_data){
 
     if(free_data != 0) { /*Free data as well*/
 
-        while(temp->next != NULL) {
+        while(temp) {
             temp = temp->next;
             free(list->data);
             free(list);
             list = temp;
         }
 
-        free(temp);
-
     }
     else { /*Free just struct pointers*/
 
-        while(temp->next != NULL) {
+        while(temp != NULL) {
             temp = temp->next;
             free(list);
             list = temp;
         }
-
-        free(temp);
 
     }
 
@@ -255,10 +337,25 @@ void print_list(struct node_struct *head) {
 
     temp = head;
 
-    while(temp->next != NULL) {
-        printf("|%s|\n", (char*)temp->data);
+    while(temp) {
+        printf("|%s| %p\n", (char*)temp->data, (void*)temp->next);
         temp = temp->next;
     }
+
+    return;
+}
+
+void print_search(struct node_struct *head) {
+
+    struct node_struct *temp;
+
+    temp = head;
+
+    while(temp) {
+        printf("|%p| %p\n", temp->data, (void*)temp->next);
+        temp = temp->next;
+    }
+
 
     return;
 }
